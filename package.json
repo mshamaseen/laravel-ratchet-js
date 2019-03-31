@@ -1,0 +1,25 @@
+{
+  "name": "laravel-ratchet",
+  "version": "1.0.0",
+  "description": "JavaScript library for php laravel-ratchet made by shamaseen",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mshamaseen/laravel-ratchet-js.git"
+  },
+  "keywords": [
+    "laravel",
+    "ratchet",
+    "websocket",
+    "shamaseen"
+  ],
+  "author": "shamaseen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mshamaseen/laravel-ratchet-js/issues"
+  },
+  "homepage": "https://github.com/mshamaseen/laravel-ratchet-js#readme"
+}
