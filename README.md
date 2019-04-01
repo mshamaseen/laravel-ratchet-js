@@ -11,7 +11,7 @@ To install the package, run the following command:
 npm i laravel-ratchet
 ```
 
-##Usage
+## Usage
 Make new instance from `Shama` class:
 
 ```$xslt
