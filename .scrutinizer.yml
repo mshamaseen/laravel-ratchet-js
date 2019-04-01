@@ -1,4 +1,5 @@
-javascript: true
+checks:
+  javascript: true
 
 build:
   nodes:
@@ -6,5 +7,3 @@ build:
       tests:
         override:
           - js-scrutinizer-run
-
-filter:
