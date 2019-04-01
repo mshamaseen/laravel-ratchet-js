@@ -1,6 +1,6 @@
 {
   "name": "laravel-ratchet",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "JavaScript library for php laravel-ratchet made by shamaseen",
   "main": "index.js",
   "scripts": {
