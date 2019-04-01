@@ -71,5 +71,5 @@ If an event is sent without having a listener to catch it, default listener will
 
 [npm]: https://img.shields.io/npm/v/laravel-ratchet.svg
 
-####Default listener
+#### Default listener
 If an event is sent without having a listener to catch it, default listener will be triggered.
