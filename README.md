@@ -1,5 +1,5 @@
-[![NPM package][npm]][npm-url]
-
+[![NPM package][npm]](https://www.npmjs.com/package/laravel-ratchet)
+[![Build Status](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/build-status/master)
 
 # laravel-ratchet-js
 This package is made to simplify websocket useage throughout PHP laravel ratchet package.
@@ -66,13 +66,10 @@ This listener will be triggered on error from PHP side.
 #### Initialize Listener
 When you make an instance from Shama class, it will open a websocket connection and make an initializing process, this process will till the socket "Hey I'm here !, Am ready to recieve messages !".
 
-<<<<<<< HEAD
 #### Default listener
 If an event is sent without having a listener to catch it, default listener will be triggered.
 
 [npm]: https://img.shields.io/npm/v/laravel-ratchet.svg
-[npm-url]: https://www.npmjs.com/package/laravel-ratchet
-=======
+
 ####Default listener
 If an event is sent without having a listener to catch it, default listener will be triggered.
->>>>>>> 97bbba61bbb1fbfb8e8f1540d744cadf6fa2307c
