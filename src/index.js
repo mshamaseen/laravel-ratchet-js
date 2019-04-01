@@ -1,4 +1,4 @@
-export class Shama {
+class Shama {
 
     /**
      *
