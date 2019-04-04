@@ -4,8 +4,7 @@
 # laravel-ratchet-js
 This package is made to simplify websocket useage throughout PHP laravel ratchet package.
 
-You can check PHP laravel ratchet package here:
-https://github.com/mshamaseen/laravel-ratchet
+You can check PHP laravel ratchet package [here](https://github.com/mshamaseen/laravel-ratchet).
 
 ## Installation
 
