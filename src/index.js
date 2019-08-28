@@ -4,7 +4,7 @@ class Shama {
      *
      * @param url
      */
-    constructor(url = 'ws://localhost:8080') {
+    constructor(url = 'ws://localhost:9090') {
         this.connection = new WebSocket(url);
 
         let _this = this;

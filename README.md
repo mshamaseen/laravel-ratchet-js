@@ -20,27 +20,26 @@ Make new instance from `Shama` class:
 let shama = new Shama();
 ```
 
-By default, Shama class will start websocket with `ws://localhost:8080` URL, if You want to change the URL you should send it as a parameter when make the instance:
+By default, Shama class will start websocket with `ws://localhost:9090` URL, if You want to change the URL you should send it as a parameter when make the instance:
  ```js
  let shama = new Shama(url);
  ```
+
+You should have an input element with Session value in your HTML:
+
+```html
+<input type="hidden" name="session" value="{{\Session::getId()}}">
+```
+
+And set your session id in Shama property, as following:
+```js
+shama.session = $('input[name=session]').val();
+``` 
  
 #### Philosophy
  The package philosophy is based on event listener, it is always expected to have event property on the returned json response from the server.
  The package will match the event sent from the server with the predefined  listeners on the instance, then it will auto trigger the listener with a data parameter sent from the server, and you will continue from here !
  
- 
-#### Session
-If you want to use Auth class in laravel, you need to set your session id in Shama configuration, as following:
-
-```js
-shama.session = $('input[name=session]').val();
-``` 
-
-You should have an input element with Session value in your HTML:
-```html
-<input type="hidden" name="session" value="{{\Session::getId()}}">
-```
 
 #### Define listeners
  You can define as many listener as you want by triggering the `addListener` method on Shama class:
@@ -55,6 +54,8 @@ to send a message, call the method ``send`` from Shama instance:
 ```js
 shama.send(object);
 ```
+
+`object` should container `route` property to specify which route it should be call.
 
 ## Default listeners
 By default, Shama class will have these listeners:
