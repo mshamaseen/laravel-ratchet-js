@@ -49,6 +49,16 @@ shama.addListeners(event, method);
 ```
   The event parameter is expected to be a string (the event name which sent from the server) and the method property is expected to be a function to trigger.
 
+####getting parameters
+the method defined inside `addListeners` will automatically inject an object parameter which has all data from the server, e.i:
+ 
+ ```
+ function method(e)
+ {
+    console.log(e.route);
+    console.log(e.{anyParameters come from the server}));
+ }
+ ```
 #### Send a message
 to send a message, call the method ``send`` from Shama instance:
 ```js

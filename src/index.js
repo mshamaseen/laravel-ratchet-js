@@ -6,7 +6,7 @@ class Shama {
      */
     constructor(url = 'ws://localhost:9090') {
         this.connection = new WebSocket(url);
-
+        this.debugger = false;
         let _this = this;
         this.connection.onopen = function (e) {
             _this.onOpen(e);
@@ -34,7 +34,7 @@ class Shama {
     }
 
     onOpen(e) {
-        console.log("Connection established!");
+        this.log("Connection established!");
         this.send({
             route:'initializeWebsocket'
         });
@@ -43,29 +43,32 @@ class Shama {
     onError(e) {
         if(e.hasOwnProperty('message'))
         {
-            console.error(e.message);
+            this.error(e.message);
             return true;
         }
-        console.error(e);
+        this.error(e);
     };
 
     onClose(e) {
-        console.error('WebSocket closed !');
+        this.error('WebSocket closed !');
     };
 
     onMessage(e) {
         let data = JSON.parse(e.data);
         if(!data.hasOwnProperty('event'))
         {
-            console.error('response don\'t have a event property !');
+            this.error('response don\'t have a event property !');
             return false;
         }
+
+        if(data.event === 'default')
+            this.info('No specific info called from the server, default info is called.');
 
         if (data.event in this.listeners) {
             return this.listeners[data.event](data);
         }
 
-        console.log(data);
+        this.log(data);
 
         return false;
     };
@@ -77,7 +80,7 @@ class Shama {
      */
     addListeners(event, method) {
         if (typeof method !== 'function') {
-            console.error("listeners value should be a function.");
+            this.error("listeners value should be a function.");
             return false;
         }
 
@@ -93,7 +96,7 @@ class Shama {
     send(data) {
         if(!data.hasOwnProperty('route'))
         {
-            console.error('no route specified');
+            this.error('no route specified');
             return false;
         }
         if(typeof this.session === 'string')
@@ -110,7 +113,7 @@ class Shama {
      */
     initialize(data)
     {
-        console.log(data.message);
+        this.log(data.message);
     }
 
     /**
@@ -119,7 +122,7 @@ class Shama {
      */
     default(data)
     {
-        console.log(data);
+        this.log(data);
     }
 
     defaultListeners(){
@@ -128,5 +131,42 @@ class Shama {
         // this.addListeners('sendToUser',this.initialize);
         // this.addListeners('sendToRoom',this.initialize);
         this.addListeners('default',this.default);
+    }
+
+    /**
+     * @desc report a log
+     * @param message
+     * @return {boolean}
+     */
+    log(message)
+    {
+        if(!this.debugger)
+            return true;
+
+        console.log(message);
+    }
+
+    /**
+     * @desc report an error
+     * @param message
+     * @return {boolean}
+     */
+    error(message)
+    {
+        if(!this.debugger)
+            return true;
+        console.error(message);
+    }
+
+    /**
+     * @desc report an info
+     * @param message
+     * @return {boolean}
+     */
+    info(message)
+    {
+        if(!this.debugger)
+            return true;
+        console.info(message);
     }
 }
