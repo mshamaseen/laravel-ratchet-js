@@ -4,7 +4,18 @@ class Shama {
      *
      * @param url
      */
-    constructor(url = 'ws://localhost:9090') {
+    constructor(url = null) {
+
+        if(url === null)
+        {
+            let myHostname = window.location.hostname;
+            let scheme = "ws";
+            if (document.location.protocol === "https:") {
+                scheme += "s";
+            }
+            url = scheme+"://" + myHostname;
+        }
+
         this.connection = new WebSocket(url);
         this.debugger = false;
         let _this = this;
@@ -126,11 +137,11 @@ class Shama {
     }
 
     defaultListeners(){
-        this.addListeners('error',this.onError);
-        this.addListeners('initialize',this.initialize);
+        this.addListeners('error',this.onError.bind(this));
+        this.addListeners('initialize',this.initialize.bind(this));
         // this.addListeners('sendToUser',this.initialize);
         // this.addListeners('sendToRoom',this.initialize);
-        this.addListeners('default',this.default);
+        this.addListeners('default',this.default.bind(this));
     }
 
     /**

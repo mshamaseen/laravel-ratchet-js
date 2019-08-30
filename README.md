@@ -20,7 +20,7 @@ Make new instance from `Shama` class:
 let shama = new Shama();
 ```
 
-By default, Shama class will start websocket with `ws://localhost:9090` URL, if You want to change the URL you should send it as a parameter when make the instance:
+By default, Shama class detect your hostname and ssl and will start websocket with `ws(another s if you are using ssl)://{hostname}:9090` URL, if You want to change the URL or the port you should send it as a parameter when making the instance:
  ```js
  let shama = new Shama(url);
  ```
