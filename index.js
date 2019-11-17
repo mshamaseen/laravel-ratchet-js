@@ -3,8 +3,9 @@ export class Shama {
     /**
      *
      * @param url
+     * @param port
      */
-    constructor(url = null) {
+    constructor(url = null,port = 9090) {
 
         if(url === null)
         {
@@ -13,7 +14,7 @@ export class Shama {
             if (document.location.protocol === "https:") {
                 scheme += "s";
             }
-            url = scheme+"://" + myHostname;
+            url = scheme+"://" + myHostname + ":" + port;
         }
 
         this.connection = new WebSocket(url);
