@@ -19,6 +19,9 @@ export class Shama {
 
         this.connection = new WebSocket(url);
         this.debugger = false;
+        this._ready = [];
+        this.isConnected = false;
+
         let _this = this;
         this.connection.onopen = function (e) {
             _this.onOpen(e);
@@ -50,6 +53,11 @@ export class Shama {
         this.send({
             route:'initializeWebsocket'
         });
+        this.isConnected = true;
+
+        this._ready.forEach(function (callback) {
+            callback();
+        })
     };
 
     onError(e) {
@@ -84,6 +92,17 @@ export class Shama {
 
         return false;
     };
+
+    //run this callback win websocket connected
+    ready(callback)
+    {
+        if(typeof callback !== 'function')
+            this.error('ready callback is not a function!');
+        else if(this.isConnected)
+            callback();
+        else
+            this._ready.push(callback);
+    }
 
     /**
      * @param {string} event
