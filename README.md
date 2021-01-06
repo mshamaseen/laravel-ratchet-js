@@ -1,5 +1,5 @@
 [![NPM package][npm]](https://www.npmjs.com/package/laravel-ratchet)
-[![Build Status](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/badges/build.webp?b=master)](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/build-status/master)
+[![Build Status](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/badges/build.png?b=master)](https://scrutinizer-ci.com/g/mshamaseen/laravel-ratchet-js/build-status/master)
 
 # laravel-ratchet-js
 This package is made to simplify websocket useage throughout PHP laravel ratchet package.
