@@ -70,6 +70,7 @@ export class Shama {
     };
 
     onClose(e) {
+        this.isConnected = false;
         this.error('WebSocket closed !');
     };
 
