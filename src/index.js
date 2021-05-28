@@ -1,6 +1,7 @@
 class Shama {
 
     /**
+     *
      * @param url
      * @param port
      */
@@ -18,6 +19,9 @@ class Shama {
 
         this.connection = new WebSocket(url);
         this.debugger = false;
+        this._ready = [];
+        this.isConnected = false;
+
         let _this = this;
         this.connection.onopen = function (e) {
             _this.onOpen(e);
@@ -44,11 +48,16 @@ class Shama {
         this.session = null;
     }
 
-    onOpen(e) {
+    onOpen() {
         this.log("Connection established!");
         this.send({
             route:'initializeWebsocket'
         });
+        this.isConnected = true;
+
+        this._ready.forEach(function (callback) {
+            callback();
+        })
     };
 
     onError(e) {
@@ -60,7 +69,8 @@ class Shama {
         this.error(e);
     };
 
-    onClose(e) {
+    onClose() {
+        this.isConnected = false;
         this.error('WebSocket closed !');
     };
 
@@ -68,7 +78,7 @@ class Shama {
         let data = JSON.parse(e.data);
         if(!data.hasOwnProperty('event'))
         {
-            this.error('response don\'t have a event property !');
+            this.error('response don\'t have a event property!');
             return false;
         }
 
@@ -83,6 +93,17 @@ class Shama {
 
         return false;
     };
+
+    //run this callback win websocket connected
+    ready(callback)
+    {
+        if(typeof callback !== 'function')
+            this.error('ready callback is not a function!');
+        else if(this.isConnected)
+            callback();
+        else
+            this._ready.push(callback);
+    }
 
     /**
      * @param {string} event
@@ -110,10 +131,13 @@ class Shama {
             this.error('no route specified');
             return false;
         }
+
         if(typeof this.session === 'string')
         {
             data['session'] = this.session;
         }
+
+        data['_url'] = window.location.href;
 
         this.connection.send(JSON.stringify(data));
     }

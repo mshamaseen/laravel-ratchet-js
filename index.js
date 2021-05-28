@@ -48,7 +48,7 @@ export class Shama {
         this.session = null;
     }
 
-    onOpen(e) {
+    onOpen() {
         this.log("Connection established!");
         this.send({
             route:'initializeWebsocket'
@@ -69,7 +69,7 @@ export class Shama {
         this.error(e);
     };
 
-    onClose(e) {
+    onClose() {
         this.isConnected = false;
         this.error('WebSocket closed !');
     };
@@ -78,7 +78,7 @@ export class Shama {
         let data = JSON.parse(e.data);
         if(!data.hasOwnProperty('event'))
         {
-            this.error('response don\'t have a event property !');
+            this.error('response don\'t have a event property!');
             return false;
         }
 
@@ -131,10 +131,13 @@ export class Shama {
             this.error('no route specified');
             return false;
         }
+
         if(typeof this.session === 'string')
         {
             data['session'] = this.session;
         }
+
+        data['_url'] = window.location.href;
 
         this.connection.send(JSON.stringify(data));
     }
